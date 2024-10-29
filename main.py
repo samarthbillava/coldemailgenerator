@@ -18,11 +18,14 @@ def create_streamlit_app(llm, portfolio):
             data = loader.load().pop().page_content   #page content only(text)
             portfolio.load_portfolio()
             jobs = llm.extract_jobs(data)
-            for job in jobs:                        #if there is multiple jobs
-                skills = job.get('skills', [])
-                links = portfolio.query_links(skills)
-                email = llm.write_mail(job, links)
-                st.code(email, language='markdown')
+            if not jobs:  # Check if jobs list is empty
+                st.warning("No job descriptions found at the provided URL.")
+            else:
+                for job in jobs:                        #if there is multiple jobs
+                    skills = job.get('skills', [])
+                    links = portfolio.query_links(skills)
+                    email = llm.write_mail(job, links)
+                    st.code(email, language='markdown')
         except Exception as e:
             st.error(f"An Error Occurred: {e}")
 
