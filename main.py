@@ -9,7 +9,7 @@ from portfolio import Portfolio
 
 def create_streamlit_app(llm, portfolio):
     st.title("📧 Cold Mail Generator")
-    url_input = st.text_input("Enter a URL:", value="https://careers.ibm.com/job/21093624/al-solution-architect-bangalore-in/?codes=WEB_SEARCH_INDIA")
+    url_input = st.text_input("Enter a URL:", value="https://careers.ibm.com/job/21087745/storage-software-engineer-c-c-cloud-bangalore-in/?codes=WEB_SEARCH_INDIA")
     submit_button = st.button("Submit")
 
     if submit_button:
